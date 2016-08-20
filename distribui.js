@@ -39,15 +39,15 @@ module.exports = (distribuicao) => {
     if(linha > 2 && linha < 5) {
       // Pego a última posição da linha anterior
       let tam = distribuicao[linha-1].length-1
-      if(coluna===0 && tam < 3) {
+      if(!coluna && tam < 3) {
         positions.linha = linha-1
         positions.coluna = tam 
         return voltaLinhaContinuaColuna(linha, tam)
       }
-      if(coluna===0 && tam >= 3) {
+      if(!coluna && tam >= 3) {
         positions.linha = linha-1
         positions.coluna = tam-1
-        return voltaLinhaContinuaColuna(positions.linha, positions.coluna)
+        return voltaLinhaContinuaColuna(linha-1, tam-1)
       }
       if(coluna) return pulaLinhaDiminuiColuna(linha, coluna)
     }
