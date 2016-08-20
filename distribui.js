@@ -13,7 +13,7 @@ module.exports = (distribuicao) => {
   const voltaLinhaContinuaColuna = (linha, coluna) => [linha-1, coluna]
   const voltaLinhaVoltaColuna = (linha, coluna) => [linha-1, coluna-1]
   const volta2LinhasUltimaColuna = (linha, coluna) => [linha-2, coluna]
-  const testaFinalDist = (linha, coluna) => {
+  const isFinal = (linha, coluna) => {
     const ultimaLinha = (linha === distribuicao.length-1)
     const ultimaColuna = (coluna === distribuicao[linha].length-1)
     return (ultimaLinha && ultimaColuna)
@@ -23,52 +23,38 @@ module.exports = (distribuicao) => {
     let coluna = parOrdenado[1]
 
     if(!Array.isArray(parOrdenado)) return false
-    if(testaFinalDist(linha, coluna)) return false
-    if(linha===0) {
-      if(coluna===0) return pulaLinha(positions.linha, positions.coluna)
-      else return pulaLinhaColuna(positions.linha, positions.coluna)
+    if(isFinal(linha, coluna)) return false
+    if(!linha) { // === 0
+      if(!coluna) return pulaLinha(linha, coluna) // === 0
+      else return pulaLinhaColuna(linha, coluna)
     }
     if(linha===1 || linha===2) {
-      if(coluna===0) {
-        positions.linha = linha
-        positions.coluna = coluna+1
-        return continuaLinhaAndaColuna(linha, coluna)
-      }
-      if(coluna===1 ) {
-        return pulaLinhaIniciaColuna(positions.linha, positions.coluna)
-      }
+      if(!coluna) return continuaLinhaAndaColuna(linha, coluna)
+      if(coluna===1 ) return pulaLinhaIniciaColuna(linha, coluna)
       // Se coluna é a ultima posição da linha
       if(coluna===distribuicao[linha].length-1) {
         return pulaLinhaDiminuiColuna(positions.linha, positions.coluna)
       }
     }
-    if(linha > 2 && linha < 5){
+    if(linha > 2 && linha < 5) {
+      // Pego a última posição da linha anterior
       let tam = distribuicao[linha-1].length-1
       if(coluna===0 && tam < 3) {
         positions.linha = linha-1
         positions.coluna = tam 
-        return [positions.linha, positions.coluna]
+        return voltaLinhaContinuaColuna(linha, tam)
       }
       if(coluna===0 && tam >= 3) {
         positions.linha = linha-1
         positions.coluna = tam-1
         return voltaLinhaContinuaColuna(positions.linha, positions.coluna)
       }
-      if(coluna>0) {
-        return pulaLinhaDiminuiColuna(linha, coluna)
-      }
+      if(coluna) return pulaLinhaDiminuiColuna(linha, coluna)
     }
     if(linha >= 5){
       let ultimaPosicao = distribuicao[linha-2].length-1
-      if(coluna===0 && ultimaPosicao > 2) {
-        // positions.linha = linha-2
-        // positions.coluna = ultimaPosicao
-        return volta2LinhasUltimaColuna(linha, ultimaPosicao)
-        // return [positions.linha, positions.coluna]
-      }
-      if(coluna > 0) {
-        return pulaLinhaDiminuiColuna(linha, coluna)
-      }
+      if(!coluna && ultimaPosicao > 2) return volta2LinhasUltimaColuna(linha, ultimaPosicao)
+      if(coluna) return pulaLinhaDiminuiColuna(linha, coluna)
     }
   }
 
