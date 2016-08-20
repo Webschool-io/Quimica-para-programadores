@@ -1,0 +1,26 @@
+{
+  "name": "programacao-para-quimicos",
+  "version": "1.0.0",
+  "description": "Coisa simples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Webschool-io/programacao-para-quimicos.git"
+  },
+  "keywords": [
+    "chemistry",
+    "programming",
+    "webschool",
+    "destribuição",
+    "eletrônica"
+  ],
+  "author": "Suissa",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/Webschool-io/programacao-para-quimicos/issues"
+  },
+  "homepage": "https://github.com/Webschool-io/programacao-para-quimicos#readme"
+}
