@@ -12,6 +12,7 @@ module.exports = (distribuicao) => {
   const continuaLinhaAndaColuna = (linha, coluna) => [linha, coluna+1]
   const voltaLinhaContinuaColuna = (linha, coluna) => [linha-1, coluna]
   const voltaLinhaVoltaColuna = (linha, coluna) => [linha-1, coluna-1]
+  const volta2LinhasUltimaColuna = (linha, coluna) => [linha-2, coluna]
   const testaFinalDist = (linha, coluna) => {
     const ultimaLinha = (linha === distribuicao.length-1)
     const ultimaColuna = (coluna === distribuicao[linha].length-1)
@@ -60,9 +61,10 @@ module.exports = (distribuicao) => {
     if(linha >= 5){
       let ultimaPosicao = distribuicao[linha-2].length-1
       if(coluna===0 && ultimaPosicao > 2) {
-        positions.linha = linha-2
-        positions.coluna = ultimaPosicao
-        return [positions.linha, positions.coluna]
+        // positions.linha = linha-2
+        // positions.coluna = ultimaPosicao
+        return volta2LinhasUltimaColuna(linha, ultimaPosicao)
+        // return [positions.linha, positions.coluna]
       }
       if(coluna > 0) {
         return pulaLinhaDiminuiColuna(linha, coluna)
