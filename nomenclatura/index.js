@@ -22,8 +22,11 @@ const sufixos = [
   {
     grupoFuncional: 'Amida',
     sufixo: 'amida',
+  },
+  {
+    grupoFuncional: 'Ácido Carboxílico',
+    sufixo: 'óico',
   }
-   
 ]
 
 const prefixos = [
@@ -54,6 +57,14 @@ const infixos = [
   {
     descricao: 'Possui ligação tripla',
     infixo: 'in'
+  },
+  {
+    descricao: 'Éster',
+    infixo: 'ato de'
+  },
+  {
+    descricao: 'Éter',
+    infixo: 'oxi'
   }
 ]
 
@@ -95,3 +106,8 @@ console.log('propano: ', findPrefixo('propano'))
 console.log('metano: ', findInfixo('metano'))
 console.log('penteno: ', findInfixo('penteno'))
 console.log('pentino: ', findInfixo('pentino'))
+
+
+console.log('etanoato de metilo: ', findInfixo('etanoato de metilo'))
+console.log('metoximetano: ', findInfixo('metoximetano'))
+console.log('ácido etanóico: ', findSufixo('ácido etanóico'))
