@@ -42,6 +42,30 @@ const prefixos = [
 
 ]
 
+const infixos = [
+  {
+    descricao: 'Possui ligação simples',
+    infixo: 'an'
+  },
+  {
+    descricao: 'Possui ligação dupla',
+    infixo: 'en'
+  },
+  {
+    descricao: 'Possui ligação tripla',
+    infixo: 'in'
+  }
+]
+
+const findInfixo = (molecula) => {
+  let result = ''
+
+  infixos.forEach((el, i) => {
+    if (molecula.search(el.infixo) >= 1) result = el.descricao
+  })
+  return result
+}
+
 const findSufixo = (molecula) => {
   let grupo = ''
   sufixos.forEach((el, i) => {
@@ -67,3 +91,7 @@ console.log('metano: ', findSufixo('metano'))
 console.log('metano: ', findPrefixo('metano'))
 console.log('etano: ', findPrefixo('etano'))
 console.log('propano: ', findPrefixo('propano'))
+
+console.log('metano: ', findInfixo('metano'))
+console.log('penteno: ', findInfixo('penteno'))
+console.log('pentino: ', findInfixo('pentino'))
